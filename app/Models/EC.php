@@ -23,4 +23,7 @@ class EC extends Model
     {
         return $this->hasMany(Note::class);
     }
+    protected $table = 'elements_constitutifs';
+
 }
+

@@ -23,4 +23,7 @@ class Note extends Model
     {
         return $this->belongsTo(EC::class);
     }
+
+
+
 }

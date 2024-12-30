@@ -9,14 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('etudiant_id')->constrained('etudiants');
             $table->foreignId('ec_id')->constrained('elements_constitutifs');
             $table->float('note');
-            $table->string('session'); // normale ou rattrapage
+            $table->enum('session', ['normale', 'rattrapage']); // normale ou rattrapage
             $table->date('date_evaluation');
             $table->timestamps();
         });
@@ -25,7 +25,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('notes');
     }

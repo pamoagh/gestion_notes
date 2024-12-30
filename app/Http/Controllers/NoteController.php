@@ -12,7 +12,10 @@ class NoteController extends Controller
      */
     public function index()
     {
-        //
+        // Récupération des notes depuis la base de données
+        $notes = \App\Models\Note::with('etudiant', 'ec')->get();
+
+    return view('notes.index', compact('notes'));
     }
 
     /**

@@ -9,10 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
+            $table->string('etudiant_id');
+            $table->string('ec_id');
+            $table->string('note'); 
+            $table->string('session'); 
+            $table->string('date_evaluation'); 
             $table->timestamps();
         });
     }
@@ -20,7 +25,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('notes');
     }

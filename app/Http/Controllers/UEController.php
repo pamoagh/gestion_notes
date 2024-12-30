@@ -12,7 +12,8 @@ class UEController extends Controller
      */
     public function index()
     {
-        //
+        $ues = UE::all();
+        return view('ues.index', compact('ues'));
     }
 
     /**
@@ -20,7 +21,7 @@ class UEController extends Controller
      */
     public function create()
     {
-        //
+        return view('ues.create');
     }
 
     /**
@@ -28,7 +29,16 @@ class UEController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'code' => 'required|unique:unites_enseignement',
+            'nom' => 'required',
+            'credits_ects' => 'required|integer|min:1|max:30',
+            'semestre' => 'required|integer|min:1|max:6',
+        ]);
+    
+        UE::create($request->all());
+    
+        return redirect()->route('ues.index');
     }
 
     /**
