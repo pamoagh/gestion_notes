@@ -21,9 +21,13 @@ class Note extends Model
     // Relation avec l'EC (une note appartient à un EC)
     public function ec()
     {
-        return $this->belongsTo(EC::class);
+        return $this->belongsTo(EC::class, 'ec_id');
     }
 
-
+    public function uniteEnseignement()
+    {
+        return $this->belongsTo(UniteEnseignement::class, 'ue_id');
+    }
+    
 
 }

@@ -17,4 +17,15 @@ class UE extends Model
     {
         return $this->hasMany(EC::class);
     }
+
+    public function elementsConstitutifs()
+    {
+        return $this->hasMany(EC::class, 'ue_id');
+    }
+
+    public function notes()
+{
+    return $this->hasMany(Note::class, 'ue_id');
+}
+
 }

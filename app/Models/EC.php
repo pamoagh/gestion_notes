@@ -21,7 +21,7 @@ class EC extends Model
     // Relation avec les notes (un EC peut avoir plusieurs notes)
     public function notes()
     {
-        return $this->hasMany(Note::class);
+        return $this->hasMany(Note::class, 'ec_id');
     }
     protected $table = 'elements_constitutifs';
 
