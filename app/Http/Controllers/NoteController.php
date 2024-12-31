@@ -13,7 +13,10 @@ class NoteController extends Controller
     public function index()
     {
         // Récupération des notes depuis la base de données
-        $notes = \App\Models\Note::with('etudiant', 'ec')->get();
+        // Code pour afficher les notes, par exemple
+        $notes = Note::all();
+        return view('notes.index', compact('notes'));
+        
 
     return view('notes.index', compact('notes'));
     }
@@ -31,7 +34,25 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation de la requête
+        $request->validate([
+            'etudiant' => 'required|string',
+            'ue' => 'required|string',
+            'note' => 'required|numeric|min:0|max:20',
+            'session' => 'required|string',
+        ]);
+
+        // Enregistrement de la nouvelle note
+        Note::create([
+            'etudiant_id' => $request->etudiant,
+            'ue_id' => $request->ue,
+            'note' => $request->note,
+            'session' => $request->session,
+            'date_evaluation' => now(), // Date actuelle
+        ]);
+
+        // Redirection ou retour avec message
+        return redirect()->route('notes.index')->with('success', 'Note enregistrée avec succès');
     }
 
     /**

@@ -25,5 +25,12 @@ class ResultatController extends Controller
 
         return view('resultats', ['resultats' => $resultats]);
     }
+
+    public function index()
+{
+    // Retourne une vue avec les résultats
+    return view('resultats.index');
+}
+
 }
 
